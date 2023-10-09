@@ -35,20 +35,26 @@ public class CustomerController {
     }
 
     @PostMapping("/addmany")
-    public void addMany(@RequestParam Integer num){
-        if(num==null)
-            num=1;
-        Customer customer=new Customer();
-        Random random = new Random();
-        for(int i=0;i<num;i++){
-            int randomNumber = random.nextInt() + 10000000;
-            customer.setCustomerId("CID"+randomNumber);
-            customer.setFirstName("first"+i);
-            customer.setSecondName("second"+i);
-            customer.setCity("city"+i);
-            customer.setStreet("street"+i);
-            customer.setState("state"+i);
-            customerService.addCustomer(customer);
+    public void addMany (@RequestParam Integer num){
+        try {
+            if (num == null)
+                num = 1;
+            Customer customer = new Customer();
+            Random random = new Random();
+            for (int i = 0; i < num; i++) {
+                int randomNumber = random.nextInt() + 10000000;
+                customer.setCustomerId("CID" + randomNumber);
+                customer.setFirstName("first" + i);
+                customer.setSecondName("second" + i);
+                customer.setCity("city" + i);
+                customer.setStreet("street" + i);
+                customer.setState("state" + i);
+                customerService.addCustomer(customer);
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println("Exception");
         }
     }
 }
